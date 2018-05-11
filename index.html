@@ -2,48 +2,45 @@
 
 <html lang="en-us">
 
-  <head>
+<head>
 
-    <meta charset="UTF-8">
-    <title>Train Scheduler</title>
+  <meta charset="UTF-8">
+  <title>Train Scheduler</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+ crossorigin="anonymous">
 
-    <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+ <link rel"stylesheet" href="css/style.css">
 
-    <!-- Moment.js Reference -->
-    <!-- <script src="http://momentjs.com/downloads/moment.js"></script>   -->
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+</head>
 
-  </head>
+<body>
 
-  <body>
+  <!-- Employee Tracker -->
+  <div class="container">
 
-    <!-- Employee Tracker -->
-    <div class="container">
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+      <h1 class="text-center">Anytime is Train Time</h1>
+      <h3 class="text-center">Choo choo. Chee chee.</h3>
+    </div>
 
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-        <h1 class="text-center">Anytime is Train Time</h1>
-        <h3 class="text-center">Choo choo. Chee chee.</h3>
-      </div>
+    <div class="row">
 
-      <div class="row">
-
-        <div class="col-lg-12">
+      <div class="col-lg-12">
 
         <!-- Current Employees-->
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title"><strong>Current Train Schedule</strong></h3>
-            </div>
-            <div class="panel-body">
-              <table class="table table-hover" id='train-table'>
-                <thead>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <strong>Current Train Schedule</strong>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover">
+              <thead>
+                <div class="train-table">
                   <tr>
                     <th>Train Name</th>
                     <th>Destination</th>
@@ -51,42 +48,43 @@
                     <th>Next Arrival</th>
                     <th>Minutes Away</th>
                   </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-            </div>
+                </div>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
           </div>
+        </div>
 
-          <!-- Add Employee  -->
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title"><strong>Add Train</strong></h3>
-            </div>
-            <div class="panel-body">
+        <!-- Add Employee  -->
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <strong>Add Train</strong>
+            </h3>
+          </div>
+          <div class="panel-body">
 
-              <!-- Entry Form -->
-              <form>
-                <div class="form-group">
-                  <label for="train-name-input">Train Name</label>
-                  <input class="form-control" id="train-name-input" type="text">
-                </div>
-                <div class="form-group">
-                  <label for="destination-input">Destination</label>
-                  <input class="form-control" id="destination-input" type="text">
-                </div>
-                <div class="form-group">
-                  <label for="first-train-input">First Train Time (HH:mm - military time)</label>
-                  <input class="form-control" id="first-train-input" type="text">
-                </div>
-                <div class="form-group">
-                  <label for="frequency-input">Frequency (min)</label>
-                  <input class="form-control" id="frequency-input" type="text">
-                </div>
-                <button class="btn btn-primary" id="submit-btn" type="submit">Submit</button>
-              </form>
-
-            </div>
+            <!-- Entry Form -->
+            <form>
+              <div class="form-group">
+                <label for="train-name-input">Train Name</label>
+                <input class="form-control" id="train-name-input" type="text">
+              </div>
+              <div class="form-group">
+                <label for="destination-input">Destination</label>
+                <input class="form-control" id="destination-input" type="text">
+              </div>
+              <div class="form-group">
+                <label for="first-train-input">First Train Time (HH:mm - military time)</label>
+                <input class="form-control" id="first-train-input" type="text">
+              </div>
+              <div class="form-group">
+                <label for="frequency-input">Frequency (min)</label>
+                <input class="form-control" id="frequency-input" type="text">
+              </div>
+              <button class="btn btn-primary" id="submit-btn" type="submit">Submit</button>
+            </form>
 
           </div>
 
@@ -96,11 +94,40 @@
 
     </div>
 
-    <!-- JavaScript -->
-    <script src="timesheetLogic.js"></script>
+  </div>
 
-    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase.js"></script>
 
-  </body>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA5leULUE1AfLkB6d5oDKqhuWtFV64Nu_g",
+      authDomain: "trainsch-a9808.firebaseapp.com",
+      databaseURL: "https://trainsch-a9808.firebaseio.com",
+      projectId: "trainsch-a9808",
+      storageBucket: "trainsch-a9808.appspot.com",
+      messagingSenderId: "537354270642"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Moment.js -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <!-- My Javascript -->
+    <script src="javascript/app.js"></script>
+
+</body>
 
 </html>
