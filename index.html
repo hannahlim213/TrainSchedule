@@ -210,17 +210,17 @@
       // }
 
       // // Store everything into a variable.
-      // trainName = childSnapshot.val().trainName;
+      trainName = childSnapshot.val().trainName;
 
-      // destination = childSnapshot.val().destination;
+      destination = childSnapshot.val().destination;
 
-      // frequency = childSnapshot.val().frequency;
+      frequency = childSnapshot.val().frequency;
 
-      // firstTrainTime = childSnapshot.val().firstTrainTime;
+      firstTrainTime = childSnapshot.val().firstTrainTime;
 
-      // // log everything that is coming out of the snapshot
-      // $(".train-table").append("<tr><th>" + trainName + "</th><th>" + destination + "</th><th>" + firstTrainTime + "</th><th>" + frequency + "</th><th>" + nextOne + "</th><th>" + minutesAway +
-      //   "</th></tr>");
+      // log everything that is coming out of the snapshot
+      $(".train-table").append("<tr><th>" + trainName + "</th><th>" + destination + "</th><th>" + firstTrainTime + "</th><th>" + frequency + "</th><th>" + nextOne + "</th><th>" + minutesAway +
+        "</th></tr>");
     });
 
 
